@@ -11,6 +11,10 @@
 		77464D9D2C2562D500C8B962 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77464D9C2C2562D500C8B962 /* ContentView.swift */; };
 		77464D9F2C2562D700C8B962 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77464D9E2C2562D700C8B962 /* Assets.xcassets */; };
 		77464DA22C2562D700C8B962 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77464DA12C2562D700C8B962 /* Preview Assets.xcassets */; };
+		77464DAC2C2565FF00C8B962 /* MeterCalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77464DAB2C2565FF00C8B962 /* MeterCalculationModel.swift */; };
+		77464DAE2C25664700C8B962 /* MeterCalculationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77464DAD2C25664700C8B962 /* MeterCalculationViewModel.swift */; };
+		77464DB22C25A88F00C8B962 /* MeterCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77464DB12C25A88F00C8B962 /* MeterCalculationView.swift */; };
+		77464DB52C268B2F00C8B962 /* ResultCalculationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77464DB42C268B2F00C8B962 /* ResultCalculationComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		77464D9C2C2562D500C8B962 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		77464D9E2C2562D700C8B962 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77464DA12C2562D700C8B962 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		77464DAB2C2565FF00C8B962 /* MeterCalculationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCalculationModel.swift; sourceTree = "<group>"; };
+		77464DAD2C25664700C8B962 /* MeterCalculationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCalculationViewModel.swift; sourceTree = "<group>"; };
+		77464DB12C25A88F00C8B962 /* MeterCalculationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCalculationView.swift; sourceTree = "<group>"; };
+		77464DB42C268B2F00C8B962 /* ResultCalculationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCalculationComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,9 @@
 		77464D992C2562D500C8B962 /* CalcMeter */ = {
 			isa = PBXGroup;
 			children = (
+				77464DAA2C2565CF00C8B962 /* Models */,
+				77464DA92C2565C400C8B962 /* Views */,
+				77464DA82C2565B500C8B962 /* ViewModels */,
 				77464D9A2C2562D500C8B962 /* CalcMeterApp.swift */,
 				77464D9C2C2562D500C8B962 /* ContentView.swift */,
 				77464D9E2C2562D700C8B962 /* Assets.xcassets */,
@@ -65,6 +76,39 @@
 				77464DA12C2562D700C8B962 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		77464DA82C2565B500C8B962 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				77464DAD2C25664700C8B962 /* MeterCalculationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		77464DA92C2565C400C8B962 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				77464DB32C268B1E00C8B962 /* Component */,
+				77464DB12C25A88F00C8B962 /* MeterCalculationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		77464DAA2C2565CF00C8B962 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77464DAB2C2565FF00C8B962 /* MeterCalculationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		77464DB32C268B1E00C8B962 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				77464DB42C268B2F00C8B962 /* ResultCalculationComponent.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77464DB52C268B2F00C8B962 /* ResultCalculationComponent.swift in Sources */,
+				77464DB22C25A88F00C8B962 /* MeterCalculationView.swift in Sources */,
+				77464DAC2C2565FF00C8B962 /* MeterCalculationModel.swift in Sources */,
 				77464D9D2C2562D500C8B962 /* ContentView.swift in Sources */,
+				77464DAE2C25664700C8B962 /* MeterCalculationViewModel.swift in Sources */,
 				77464D9B2C2562D500C8B962 /* CalcMeterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +328,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +358,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

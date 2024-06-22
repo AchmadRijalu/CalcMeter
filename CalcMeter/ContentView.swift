@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var meterCalculationViewModel = MeterCalculationViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
+        MeterCalculationView(meterCalculationViewModel: meterCalculationViewModel)
         .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(meterCalculationViewModel: MeterCalculationViewModel())
 }
