@@ -12,66 +12,94 @@ struct MeterCalculationView: View {
     @State var meterOption: MeterOption = .meter
     @ObservedObject var meterCalculationViewModel: MeterCalculationViewModel
     @State var angkaTextField: String = ""
+    @FocusState var isInputActive: Bool
     var body: some View {
-        NavigationView {
-            VStack{
-                Picker("What is your favorite color?", selection: $meterOption) {
-                    ForEach(MeterOption.allCases, id: \.self){ result in
-                        Text(verbatim: "\(result.rawValue)").tag(result)
-                    }
-                    
-                }.pickerStyle(.segmented).onChange(of: meterOption) { result in
-                    
-                    
-                    switch (result) {
-                    case .meter:
-                        angkaTextField = ""
-                        meterCalculationViewModel.meterCalculcationModel.calculationResult = ""
+        GeometryReader { geo in
+            NavigationView {
+                VStack{
+                    Picker("What is your favorite color?", selection: $meterOption) {
+                        ForEach(MeterOption.allCases, id: \.self){ result in
+                            Text(verbatim: "\(result.rawValue)").tag(result)
+                        }
                         
-                    case .centiMeter:
-                        angkaTextField = ""
-                        meterCalculationViewModel.meterCalculcationModel.calculationResult = ""
-                    default:
-                        angkaTextField = ""
-                    }
-                    
-                }
-                TextField("Masukkan Angka", text: $angkaTextField).keyboardType(.decimalPad)
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.black, style: StrokeStyle(lineWidth: 1.0)))
-                
-                    .padding().padding(EdgeInsets(top: 12, leading: 12, bottom: 40, trailing: 12))
-                    .onReceive(Just(angkaTextField)) { value in
-                        let allowedInput = "0123456789,"
-                        let filtered = value.filter { allowedInput.contains($0) }
-                        let commaCounter = filtered.filter { $0 == ","}.count
-                        if commaCounter > 1 {
-                            if let commaEnteredTwice = filtered.range(of: "," , options: .backwards) {
-                                let newFilter = filtered.replacingCharacters(in: commaEnteredTwice, with: "")
-                                self.angkaTextField = newFilter
+                    }.pickerStyle(.segmented).onChange(of: meterOption) { result in
+                        switch (result) {
+                        case .meter:
+                            angkaTextField = ""
+                            meterCalculationViewModel.meterCalculcationModel.calculationResult = ""
+                            
+                        case .centiMeter:
+                            angkaTextField = ""
+                            meterCalculationViewModel.meterCalculcationModel.calculationResult = ""
+                        default:
+                            angkaTextField = ""
+                        }
+                        
+                    }.padding(.horizontal, 12)
+                    List {
+                        Section{
+                            TextField("Masukkan Angka", text: $angkaTextField).keyboardType(.decimalPad)
+                                .padding(4)
+                                .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(Color.black, style: StrokeStyle(lineWidth: 0)))
+                                .onReceive(Just(angkaTextField)) { value in
+                                    let allowedInput = "0123456789,"
+                                    let filtered = value.filter { allowedInput.contains($0) }
+                                    let commaCounter = filtered.filter { $0 == ","}.count
+                                    if commaCounter > 1 {
+                                        if let commaEnteredTwice = filtered.range(of: "," , options: .backwards) {
+                                            let newFilter = filtered.replacingCharacters(in: commaEnteredTwice, with: "")
+                                            self.angkaTextField = newFilter
+                                        }
+                                    }
+                                    if filtered != value {
+                                        self.angkaTextField = filtered
+                                    }
+                                }
+                                .focused($isInputActive)
+                                .toolbar {
+                                    ToolbarItemGroup(placement: .keyboard) {
+                                        Spacer()
+                                        Button("Done") {
+                                            isInputActive = false
+                                        }
+                                    }
+                                }
+                        }header: {
+                            HStack(spacing: 0){
+                                Text("Angka dalam")
+                                Text(meterOption.rawValue == "m - cm" ? " Meter" : " Centimeter")
                             }
                         }
-                        if filtered != value {
-                            self.angkaTextField = filtered
+                        Section{
+                            HStack{
+                                Text(String(meterCalculationViewModel.meterCalculcationModel.calculationResult))
+                                Spacer()
+                                Text(meterOption.rawValue == "m - cm" ? "Cm" : " Meter")
+                            }
+                        }header: {
+                            Text("Hasil")
                         }
-                    }
-                HStack{
-                    Text(String(meterCalculationViewModel.meterCalculcationModel.calculationResult))
+                    }.listStyle(InsetGroupedListStyle())
+                    
+                    Spacer()
+                    Button(action: {
+                        switch (meterOption){
+                        case .meter:
+                            meterCalculationViewModel.meterCalculcationModel.calculationResult = meterCalculationViewModel.meterToCentimeterCalculation(from: angkaTextField ?? "")
+                        case .centiMeter:
+                            meterCalculationViewModel.meterCalculcationModel.calculationResult = meterCalculationViewModel.centiMeterToMeterCalculation(from: angkaTextField ?? "")
+                        }
+                        
+                    }, label: {
+                        Text("Calculate").frame(maxWidth: geo.size.width * 0.75).padding(.vertical, 8).foregroundStyle(.white).bold()
+                    }).buttonStyle(.borderedProminent).buttonBorderShape(.capsule).padding(EdgeInsets(top: 16, leading: 12, bottom: 36, trailing: 12))
+                    
                 }
                 
-                
-                Button(action: {
-                    meterCalculationViewModel.meterCalculcationModel.calculationResult = meterCalculationViewModel.meterToCentimeterCalculation(from: angkaTextField ?? "")
-                    print(meterCalculationViewModel.meterCalculcationModel.calculationResult)
-                }, label: {
-                    Text("Calculate").frame(maxWidth: .infinity).padding(.vertical, 12)
-                }).buttonStyle(.borderedProminent).buttonBorderShape(.capsule)
-                
-                Spacer()
-            }.padding(.horizontal, 12)
-            
                 .navigationTitle("Calculation")
+            }
         }
+        
     }
 }
 

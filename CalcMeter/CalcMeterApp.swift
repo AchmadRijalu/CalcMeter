@@ -11,7 +11,7 @@ import SwiftUI
 struct CalcMeterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(\.colorScheme, .dark)
         }
     }
 }

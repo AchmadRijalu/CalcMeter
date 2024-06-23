@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var meterCalculationViewModel = MeterCalculationViewModel()
     var body: some View {
         MeterCalculationView(meterCalculationViewModel: meterCalculationViewModel)
-        .padding()
+        
     }
 }
 
