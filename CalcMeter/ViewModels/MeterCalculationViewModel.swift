@@ -42,8 +42,10 @@ extension String {
 }
 
 func removeTrailingZero(_ temp: Double) -> String {
-    var replaceZero = String(format: "%g", temp)
-    return replaceZero
+    let formatter = NumberFormatter()
+    formatter.usesGroupingSeparator = false
+    formatter.maximumFractionDigits = 20
+    return formatter.string(from: NSNumber(value: temp)) ?? ""
 }
 
 

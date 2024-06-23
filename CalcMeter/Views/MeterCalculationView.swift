@@ -45,6 +45,10 @@ struct MeterCalculationView: View {
                                     let allowedInput = "0123456789,"
                                     let filtered = value.filter { allowedInput.contains($0) }
                                     let commaCounter = filtered.filter { $0 == ","}.count
+                                    
+                                    if angkaTextField.first == "," {
+                                        angkaTextField = "0" + angkaTextField
+                                    }
                                     if commaCounter > 1 {
                                         if let commaEnteredTwice = filtered.range(of: "," , options: .backwards) {
                                             let newFilter = filtered.replacingCharacters(in: commaEnteredTwice, with: "")
