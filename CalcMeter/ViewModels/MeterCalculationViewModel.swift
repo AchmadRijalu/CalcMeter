@@ -55,5 +55,6 @@ func calculateSmallDecimalResult(_ number: Double) -> String {
     formatter.minimumFractionDigits = 0
     formatter.maximumFractionDigits = 20
     formatter.numberStyle = .decimal
+    formatter.usesGroupingSeparator = false
     return formatter.string(from: NSNumber(value: number)) ?? ""
 }
