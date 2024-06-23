@@ -41,20 +41,21 @@ extension String {
     }
 }
 
-func removeTrailingZero(_ temp: Double) -> String {
+func removeTrailingZero(_ tempNumber: Double) -> String {
+    //MARK: - for make readable when the number is too big, ex: 789183180 <- Remove the (.) if the number is too large
     let formatter = NumberFormatter()
     formatter.usesGroupingSeparator = false
     formatter.maximumFractionDigits = 20
-    return formatter.string(from: NSNumber(value: temp)) ?? ""
+    return formatter.string(from: NSNumber(value: tempNumber)) ?? ""
 }
 
 
-func calculateSmallDecimalResult(_ number: Double) -> String {
+func calculateSmallDecimalResult(_ tempNumbernumber: Double) -> String {
     //MARK: - for make readable when the number decimal is too small, ex: 0,00088
     let formatter = NumberFormatter()
     formatter.minimumFractionDigits = 0
     formatter.maximumFractionDigits = 20
     formatter.numberStyle = .decimal
     formatter.usesGroupingSeparator = false
-    return formatter.string(from: NSNumber(value: number)) ?? ""
+    return formatter.string(from: NSNumber(value: tempNumbernumber)) ?? ""
 }

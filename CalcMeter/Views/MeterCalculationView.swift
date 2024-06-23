@@ -21,7 +21,6 @@ struct MeterCalculationView: View {
                         ForEach(MeterOption.allCases, id: \.self){ result in
                             Text(verbatim: "\(result.rawValue)").tag(result)
                         }
-                        
                     }.pickerStyle(.segmented).onChange(of: meterOption) { result in
                         switch (result) {
                         case .meter:
@@ -99,7 +98,6 @@ struct MeterCalculationView: View {
                     }).buttonStyle(.borderedProminent).buttonBorderShape(.capsule).padding(EdgeInsets(top: 16, leading: 12, bottom: 36, trailing: 12))
                     
                 }
-                
                 .navigationTitle("Calculation")
             }
         }
